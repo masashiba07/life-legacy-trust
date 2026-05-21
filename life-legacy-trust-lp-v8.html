@@ -408,10 +408,7 @@
       <h2 class="modal-title">先行登録</h2>
       <p class="modal-desc">サービス開始時に優先的にご案内します。<br>登録は無料です。費用は一切かかりません。</p>
 
-      <div class="field-group">
-        <label class="field-label">お名前<em class="optional-badge">任意</em></label>
-        <input type="text" class="field-input" id="regName" placeholder="山田 太郎">
-      </div>
+
       <div class="field-group">
         <label class="field-label">メールアドレス<em class="required-badge">必須</em></label>
         <input type="email" class="field-input" id="regEmail" placeholder="example@email.com">
@@ -566,7 +563,7 @@
 
   function submitAll() {
     // Step1・Step2の入力値を収集
-    const name  = document.getElementById('regName').value.trim();
+
     const email = document.getElementById('regEmail').value.trim();
     const age   = document.getElementById('regAge').value;
     const q1    = document.querySelector('input[name="unorganized"]:checked');
@@ -577,16 +574,16 @@
 
     // FormDataに詰める
     const formData = new FormData();
-    formData.append('entry.1775842',   name);
-    formData.append('entry.864140298', email);
-    formData.append('entry.739683573', age);
-    formData.append('entry.1249725699', q1 ? q1.value : '');
-    q2checked.forEach(val => formData.append('entry.317015555', val));
-    formData.append('entry.713070741', q3 ? q3.value : '');
-    formData.append('entry.571542977', q4);
+
+    formData.append('entry.1759337021', email);
+    formData.append('entry.1164690521', age);
+    formData.append('entry.1030348945', q1 ? q1.value : '');
+    q2checked.forEach(val => formData.append('entry.1194599459', val));
+    formData.append('entry.348078734', q3 ? q3.value : '');
+    formData.append('entry.469341896', q4);
 
     // no-corsモードでGoogleフォームに送信（レスポンスは受け取らない）
-    fetch('https://docs.google.com/forms/d/e/1FAIpQLSeh41JwNnbD5sbEw1W42YgXGASEaU_iPqIIqiF0EClFvHMhgw/formResponse', {
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSejtGFRNIxxvkcIHEFfDvgt_p3pQsB_Qk0vKazRUw5sFg3MSw/formResponse', {
       method: 'POST',
       mode: 'no-cors',
       body: formData
