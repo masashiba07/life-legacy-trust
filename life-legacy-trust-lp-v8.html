@@ -575,23 +575,19 @@
     const utm = new URLSearchParams(window.location.search);
     const utmContent = utm.get('utm_content') || 'direct';
 
-    // GAS Web AppにPOST送信
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbz7EpuGrJ-47DLlpE829Ktx8NHeuZOP_gYD2i33rhQeF2SMr-d8LbzKSzdKzMjPAs6B6Q/exec';
-    const params = new URLSearchParams();
-    params.append('email', email);
-    params.append('age', age);
-    params.append('q1', q1 ? q1.value : '');
-    params.append('q2', q2checked.join(', '));
-    params.append('q3', q3 ? q3.value : '');
-    params.append('q4', q4);
-    params.append('utm_content', utmContent);
+    // GAS Web AppにGET送信
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwFdmp3Sh1B3xQyKBOhyMdAKPlI8oSC6x6oh9QUmKOoqdggddUcjXrSvAi4wF_LoqJf2A/exec';
+    const params = new URLSearchParams({
+      email: email,
+      age:   age,
+      q1:    q1 ? q1.value : '',
+      q2:    q2checked.join(', '),
+      q3:    q3 ? q3.value : '',
+      q4:    q4,
+      utm_content: utmContent
+    });
 
-    fetch(GAS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: params.toString()
-    }).catch(() => {});
+    new Image().src = GAS_URL + '?' + params.toString();
 
     // 完了画面を表示
     showStep(3);
